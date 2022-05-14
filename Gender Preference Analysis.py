@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Input
-raw_data = pd.read_csv('Transformed Data Set - Sheet1.csv')
+raw_data = pd.read_csv('Gender Preference Analysis/Transformed Data Set - Sheet1.csv')
 
 
 # Color and Gender
@@ -22,12 +22,23 @@ warm_num_M = len(raw_data[(raw_data['Favorite Color'] == "Warm") & (raw_data['Ge
 # 建立新資料表
 color_numbers = ['女性人數','男性人數']
 color_index = ['Cool', 'Neutral', 'Warm']
-datas = [[cool_num_F,cool_num_M],
-         [neutral_num_F,neutral_num_M],
-         [warm_num_F,warm_num_M]]
+datas = [cool_num_F,cool_num_M,
+        neutral_num_F,neutral_num_M,
+        warm_num_F,warm_num_M]
 
-color_lovers = pd.DataFrame(data = datas, columns = color_numbers, index = color_index)
-# print(color_lovers)
+# 建立圖表
+labels = ['cool_num_F', 'cool_num_M',
+        'neutral_num_F', 'neutral_num_M',
+        'warm_num_F', 'warm_num_M']
+# 圖表設定
+fig1, ax1 = plt.subplots()
+ax1.pie(datas, labels = labels, autopct = '%.1f%%', shadow = False, startangle = 90, textprops = {'fontsize': 20})
+ax1.set_title("Color Preference", size = 20)
+ax1.legend(loc = "upper left")
+fig1.set_size_inches(14,12)
+
+# 輸出圖表
+plt.show()
 
 
 # Music Genre and Gender
